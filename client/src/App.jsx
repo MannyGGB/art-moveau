@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import axios from "axios";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [title, setTitle] = useState("");
+  const [poster, setPoster] = useState("");
+  const [search, setSearch] = useState("");
 
+  async function handleSearch(event) {
+    event.preventDefault();
+    const movieAPI = `http://localhost:8080/movie?search=${search}`;
+
+    const res = await axios.get(movieAPI);
+    setTitle(res.data.title);
+    setPoster(res.data.poster);
+  }
   return (
-    <>
+    <main>
+      <form onSubmit={handleSearch}>
+        <input
+          placeholder="Movie title"
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <button>Search</button>
+      </form>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <p>{title}</p>
+        <img src={poster} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
