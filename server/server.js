@@ -8,3 +8,4 @@ const axios = require("axios");
 
 // add your endpoints here
 app.get("/", (request, response) => response.json("Root route for translatim"));
+app.listen(PORT, () => console.log(`App is running PORT ${PORT}`));
