@@ -9,7 +9,9 @@ function App() {
 
   async function handleSearch(event) {
     event.preventDefault();
-    const movieAPI = `http://localhost:8080/movie?search=${search}`;
+    const movieAPI = `https://art-moveau.onrender.com/movie?search=${search}`;
+    //https://art-moveau.onrender.com/
+    //http://localhost:8080/movie?search=${search}
 
     const res = await axios.get(movieAPI);
     setTitle(res.data.title);
