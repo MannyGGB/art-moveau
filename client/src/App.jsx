@@ -19,6 +19,10 @@ function App() {
   }
   return (
     <main>
+      <header>
+        <h1>Art Moveau</h1>
+        <p>Match your favourite film with a piece of art</p>
+      </header>
       <form onSubmit={handleSearch}>
         <input
           placeholder="Movie title"
